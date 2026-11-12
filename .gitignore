@@ -1,0 +1,8 @@
+.claude/
+__pycache__/
+result.json
+out/*.log
+out/robot_v*_backup.py
+out/robot.glb
+out/handoff/*.zip
+out/handoff/*.b64.txt

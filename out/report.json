@@ -1,0 +1,502 @@
+{
+ "envelope_mm": {
+  "L": 295.5,
+  "W": 193.6,
+  "H": 174.3
+ },
+ "lidar_scan_plane_z": 41.8,
+ "scrub_radius_mm": 9.0,
+ "ground_clearance_min": 7.4,
+ "printed_mass_g": 343,
+ "printed_mass_v1_g": 433,
+ "bought_mass_g": 867,
+ "total_mass_g": 1210,
+ "drive_ratio": "36:11 = 3.27",
+ "ackermann": [
+  {
+   "horn": 0.0,
+   "left": -0.0,
+   "right": 0.0,
+   "outer_ideal": 0,
+   "err": 0.0
+  },
+  {
+   "horn": 4.0,
+   "left": 3.33,
+   "right": 3.2,
+   "outer_ideal": 3.18,
+   "err": 0.03
+  },
+  {
+   "horn": 8.0,
+   "left": 6.8,
+   "right": 6.28,
+   "outer_ideal": 6.18,
+   "err": 0.09
+  },
+  {
+   "horn": 12.0,
+   "left": 10.4,
+   "right": 9.21,
+   "outer_ideal": 9.03,
+   "err": 0.18
+  },
+  {
+   "horn": 16.0,
+   "left": 14.13,
+   "right": 12.01,
+   "outer_ideal": 11.74,
+   "err": 0.27
+  },
+  {
+   "horn": 20.0,
+   "left": 18.03,
+   "right": 14.65,
+   "outer_ideal": 14.34,
+   "err": 0.31
+  },
+  {
+   "horn": 24.0,
+   "left": 22.1,
+   "right": 17.12,
+   "outer_ideal": 16.85,
+   "err": 0.27
+  },
+  {
+   "horn": 28.0,
+   "left": 26.39,
+   "right": 19.42,
+   "outer_ideal": 19.3,
+   "err": 0.11
+  },
+  {
+   "horn": 32.0,
+   "left": 30.96,
+   "right": 21.52,
+   "outer_ideal": 21.74,
+   "err": -0.23
+  }
+ ],
+ "lock_deg_inner_outer": [
+  31.0,
+  21.5
+ ],
+ "min_turn_radius_mm": 452,
+ "fasteners": {
+  "bought": "none",
+  "snap_pins": 20,
+  "pin_lengths_mm": [
+   16.5,
+   30.5,
+   39.4
+  ],
+  "joints": {
+   "axle caps + rear housing": 8,
+   "motor mount": 4,
+   "front axle": 4,
+   "lidar cradle": 4
+  },
+  "printed_fasteners": [
+   "standoff snap pegs x20",
+   "kingpin x2",
+   "pivot pin x4",
+   "axle clip x4",
+   "spider cross x1",
+   "MG996R + SG90 splined horns",
+   "motor snap rings",
+   "lidar snap hooks",
+   "SG90 snap hooks"
+  ],
+  "glue_or_tape": [
+   "Raspberry Pi 4B",
+   "ESP32-S3",
+   "IR modules",
+   "IBT-2",
+   "buck converters",
+   "IMU",
+   "lidar USB adapter",
+   "LiPo",
+   "e-stop + start button"
+  ]
+ },
+ "interference_static": [],
+ "interference_steering": [],
+ "running_clearance": {
+  "min_gap_mm": 0.15,
+  "FIT": 0.25,
+  "tight": [],
+  "closest": [
+   [
+    "horn_adapter",
+    "MG996R",
+    -5.981
+   ],
+   [
+    "motor_pinion",
+    "JGA25_370_encoder_motor",
+    -4.492
+   ],
+   [
+    "bottom_plate_rear",
+    "JGA25_370_encoder_motor",
+    0.0
+   ],
+   [
+    "motor_mount",
+    "JGA25_370_encoder_motor",
+    0.0
+   ],
+   [
+    "side_gear_R",
+    "spider_gear_A",
+    0.055
+   ],
+   [
+    "side_gear_R",
+    "spider_gear_B",
+    0.055
+   ],
+   [
+    "side_gear_R",
+    "spider_gear_C",
+    0.055
+   ],
+   [
+    "side_gear_L",
+    "spider_gear_A",
+    0.055
+   ],
+   [
+    "side_gear_L",
+    "spider_gear_B",
+    0.055
+   ],
+   [
+    "side_gear_L",
+    "spider_gear_C",
+    0.055
+   ],
+   [
+    "knuckle_L",
+    "axle_clip_front_L",
+    0.09
+   ],
+   [
+    "knuckle_R",
+    "axle_clip_front_R",
+    0.09
+   ],
+   [
+    "diff_case_crown",
+    "motor_pinion",
+    0.138
+   ],
+   [
+    "rear_housing",
+    "diff_cover",
+    0.2
+   ],
+   [
+    "rear_housing",
+    "diff_case_crown",
+    0.2
+   ],
+   [
+    "rear_housing",
+    "half_shaft_R",
+    0.2
+   ],
+   [
+    "rear_housing",
+    "half_shaft_L",
+    0.2
+   ],
+   [
+    "axle_cap_R",
+    "diff_case_crown",
+    0.2
+   ],
+   [
+    "axle_cap_R",
+    "half_shaft_R",
+    0.2
+   ],
+   [
+    "axle_cap_L",
+    "diff_cover",
+    0.2
+   ],
+   [
+    "axle_cap_L",
+    "half_shaft_L",
+    0.2
+   ],
+   [
+    "front_axle",
+    "knuckle_L",
+    0.2
+   ],
+   [
+    "front_axle",
+    "knuckle_R",
+    0.2
+   ],
+   [
+    "knuckle_L",
+    "pivot_pin_arm_L",
+    0.2
+   ],
+   [
+    "knuckle_L",
+    "tie_rod_L",
+    0.2
+   ],
+   [
+    "pivot_pin_arm_L",
+    "tie_rod_L",
+    0.2
+   ],
+   [
+    "pivot_pin_horn_L",
+    "tie_rod_L",
+    0.2
+   ],
+   [
+    "pivot_pin_horn_L",
+    "horn_adapter",
+    0.2
+   ],
+   [
+    "tie_rod_L",
+    "horn_adapter",
+    0.2
+   ],
+   [
+    "knuckle_R",
+    "pivot_pin_arm_R",
+    0.2
+   ],
+   [
+    "knuckle_R",
+    "tie_rod_R",
+    0.2
+   ],
+   [
+    "pivot_pin_arm_R",
+    "tie_rod_R",
+    0.2
+   ],
+   [
+    "pivot_pin_horn_R",
+    "tie_rod_R",
+    0.2
+   ],
+   [
+    "pivot_pin_horn_R",
+    "horn_adapter",
+    0.2
+   ],
+   [
+    "tie_rod_R",
+    "horn_adapter",
+    0.2
+   ],
+   [
+    "diff_cover",
+    "half_shaft_L",
+    0.208
+   ],
+   [
+    "diff_case_crown",
+    "half_shaft_R",
+    0.208
+   ],
+   [
+    "diff_cover",
+    "side_gear_L",
+    0.249
+   ],
+   [
+    "diff_case_crown",
+    "side_gear_R",
+    0.249
+   ],
+   [
+    "spider_cross",
+    "spider_gear_A",
+    0.249
+   ]
+  ]
+ },
+ "gear_mesh_overlap_mm3": {
+  "pinion_crown": 0.0,
+  "side_spider": 0.001
+ },
+ "gear_float_mm": {
+  "side_gear_R": 0.3,
+  "side_gear_L": 0.3,
+  "spider_gear_A": 0.25,
+  "spider_gear_B": 0.25,
+  "spider_gear_C": 0.25
+ },
+ "diff_assembly_overlap_mm3": {
+  "side_gear_R into crown half": 0.0,
+  "cross + spiders into crown half": 0.0,
+  "side_gear_L into cover": 0.0,
+  "cover onto crown half": 0.0,
+  "half_shaft_R into side gear": 0.0,
+  "half_shaft_L into side gear": 0.0
+ },
+ "strength": {
+  "load_case": "grip-limited axle torque x2.0 = 0.44 N*m",
+  "parts": {
+   "pinion teeth (z11, in layer)": {
+    "MPa": 12.7,
+    "allow": 30.0,
+    "SF": 2.4
+   },
+   "crown teeth (teeth up = across layers)": {
+    "MPa": 5.9,
+    "allow": 20.0,
+    "SF": 3.4
+   },
+   "side/spider bevel teeth (in layer)": {
+    "MPa": 13.4,
+    "allow": 30.0,
+    "SF": 2.2
+   },
+   "spider cross arm bending": {
+    "MPa": 12.5,
+    "allow": 30.0,
+    "SF": 2.4
+   },
+   "half shaft torsion (7 mm hex, printed upright)": {
+    "MPa": 6.6,
+    "allow": 20.0,
+    "SF": 3.0
+   },
+   "pinion D-flat bearing on motor shaft": {
+    "MPa": 4.3,
+    "allow": 20.0,
+    "SF": 4.7
+   }
+  },
+  "weakest": "side/spider bevel teeth (in layer)",
+  "min_SF": 2.2,
+  "jammed_wheel_motor_stall_limit_kgcm": 3.0
+ },
+ "bed": {
+  "limit_mm": 250.0,
+  "too_big": {},
+  "largest": {
+   "bottom_plate_rear": [
+    4.0,
+    104.0,
+    178.0
+   ],
+   "mid_deck_rear": [
+    3.0,
+    110.0,
+    165.0
+   ],
+   "front_axle": [
+    32.0,
+    40.0,
+    138.0
+   ],
+   "top_deck": [
+    3.0,
+    100.0,
+    131.0
+   ],
+   "bottom_plate_front": [
+    4.0,
+    96.0,
+    120.0
+   ],
+   "mid_deck_front": [
+    7.1,
+    108.0,
+    110.0
+   ]
+  }
+ },
+ "parts_printed_g": {
+  "bottom_plate_rear": 33.4,
+  "bottom_plate_front": 15.5,
+  "rear_housing": 9.2,
+  "axle_cap_R": 2.5,
+  "axle_cap_L": 2.5,
+  "diff_cover": 13.0,
+  "diff_case_crown": 12.8,
+  "spider_cross": 0.7,
+  "side_gear_R": 0.7,
+  "side_gear_L": 0.7,
+  "spider_gear_A": 0.5,
+  "spider_gear_B": 0.5,
+  "spider_gear_C": 0.5,
+  "motor_pinion": 1.0,
+  "half_shaft_R": 4.3,
+  "half_shaft_L": 4.3,
+  "motor_mount": 7.9,
+  "front_axle": 13.0,
+  "kingpin_L": 0.8,
+  "knuckle_L": 3.2,
+  "wheel_front_L": 9.9,
+  "tire_front_L": 11.2,
+  "axle_clip_front_L": 0.1,
+  "wheel_rear_L": 10.0,
+  "tire_rear_L": 11.2,
+  "axle_clip_rear_L": 0.1,
+  "pivot_pin_arm_L": 0.2,
+  "pivot_pin_horn_L": 0.1,
+  "tie_rod_L": 1.3,
+  "kingpin_R": 0.8,
+  "knuckle_R": 3.2,
+  "wheel_front_R": 9.9,
+  "tire_front_R": 11.2,
+  "axle_clip_front_R": 0.1,
+  "wheel_rear_R": 10.0,
+  "tire_rear_R": 11.2,
+  "axle_clip_rear_R": 0.1,
+  "pivot_pin_arm_R": 0.2,
+  "pivot_pin_horn_R": 0.1,
+  "tie_rod_R": 1.3,
+  "horn_adapter": 1.6,
+  "lidar_cradle": 12.0,
+  "standoff_low_0": 3.8,
+  "standoff_low_1": 3.8,
+  "standoff_low_2": 3.8,
+  "standoff_low_3": 3.8,
+  "standoff_low_4": 3.8,
+  "standoff_low_5": 3.8,
+  "mid_deck_rear": 28.3,
+  "mid_deck_front": 15.0,
+  "standoff_high_0": 2.4,
+  "standoff_high_1": 2.4,
+  "standoff_high_2": 2.4,
+  "standoff_high_3": 2.4,
+  "top_deck": 16.6,
+  "cam_cradle": 11.4,
+  "snap_pin_00": 0.4,
+  "snap_pin_01": 0.4,
+  "snap_pin_02": 0.4,
+  "snap_pin_03": 0.4,
+  "snap_pin_04": 0.4,
+  "snap_pin_05": 0.4,
+  "snap_pin_06": 0.4,
+  "snap_pin_07": 0.4,
+  "snap_pin_08": 0.2,
+  "snap_pin_09": 0.2,
+  "snap_pin_10": 0.2,
+  "snap_pin_11": 0.2,
+  "snap_pin_12": 0.2,
+  "snap_pin_13": 0.2,
+  "snap_pin_14": 0.2,
+  "snap_pin_15": 0.2,
+  "snap_pin_16": 0.5,
+  "snap_pin_17": 0.5,
+  "snap_pin_18": 0.2,
+  "snap_pin_19": 0.2
+ }
+}
