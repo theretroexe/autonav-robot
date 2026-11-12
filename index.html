@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autonav R1</title>
+<meta name="description" content="Autonav R1: a screw-free, 3D-printed Ackermann robot for the Autonomous Navigation Challenge, designed by theretroexe.">
+<meta property="og:title" content="Autonav R1">
+<meta property="og:description" content="A screw-free, 3D-printed Ackermann robot with a printed differential and a low-mounted lidar.">
+<meta property="og:image" content="https://theretroexe.github.io/autonav-robot/media/hero.webp">
+<link rel="icon" href="media/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bed: #edf0f3; --surface: #ffffff; --ink: #20242a; --muted: #5a636e; --rule: #d3d9df;
+  --graphite: #3c4048; --blue: #2069c4; --orange: #c75f08;
+  --swatch-plate: #3c4048; --swatch-bracket: #2878dc; --swatch-gear: #f5821e; --swatch-pin: #fac83c;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --wrap: 1180px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bed: #1a1d22; --surface: #22262c; --ink: #e9ecef; --muted: #a0a9b3; --rule: #343a42;
+  --graphite: #c9d0d8; --blue: #6aa8f0; --orange: #f59a4a; color-scheme: dark } }
+:root[data-theme="dark"] { --bed: #1a1d22; --surface: #22262c; --ink: #e9ecef; --muted: #a0a9b3; --rule: #343a42;
+  --graphite: #c9d0d8; --blue: #6aa8f0; --orange: #f59a4a; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bed); color: var(--ink); font: 17px/1.6 var(--body); overflow-x: clip; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--blue); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+code { font-size: 0.92em; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(30px, 4vw, 46px); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; }
+h3 { font-size: 22px; font-weight: 700; font-stretch: 105%; }
+p { margin: 0; }
+.lede { font-size: 19px; color: var(--muted); max-width: 52ch; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none;
+  font: 800 20px/1 var(--display); font-stretch: 125%; }
+.brand img { width: 38px; height: 38px; }
+.top nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.top nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15px; }
+.top nav a:hover { color: var(--blue); }
+
+.hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 24px; padding-top: 32px; padding-bottom: 56px; }
+.hero h1 { font-size: clamp(56px, 8.4vw, 118px); font-weight: 900; font-stretch: 125%; letter-spacing: -0.035em; line-height: 0.9; }
+.hero h1 span { display: block; font-stretch: 62%; font-weight: 700; letter-spacing: 0; color: var(--muted); font-size: 0.4em; line-height: 1.1; margin-top: 0.3em; }
+.hero .lede { margin-top: 22px; }
+.credit { margin-top: 14px; font-size: 15px; color: var(--muted); }
+.credit b { color: var(--ink); font-weight: 600; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 20px; border-radius: 8px; font-weight: 600;
+  font-size: 16px; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); }
+.btn.primary { background: var(--ink); color: var(--bed); }
+.btn:hover { border-color: var(--blue); color: var(--blue); }
+.btn.primary:hover { background: var(--blue); border-color: var(--blue); color: var(--bed); }
+/* soft shadows reach the render edges; feather them so no rectangle shows on either theme */
+.hero figure img, .feature figure img { -webkit-mask: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent) , linear-gradient(transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-composite: source-in; mask: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent), linear-gradient(transparent, #000 8%, #000 92%, transparent);
+  mask-composite: intersect; }
+.hero figure { margin: 0 -6vw 0 0; }
+
+.drawing { background: var(--surface); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 72px 0; }
+.drawing-grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 48px; align-items: center; margin-top: 36px; }
+.elev { position: relative; }
+.elev svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dim path, .dim line { stroke: var(--ink); stroke-width: 2.4; fill: none; }
+.dim .ext { stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 2 6; }
+.dim .scan { stroke: var(--orange); stroke-width: 3; stroke-dasharray: 14 9; }
+.dim text { font: 600 34px var(--body); fill: var(--ink); font-variant-numeric: tabular-nums; }
+.dim text.o { fill: var(--orange); }
+.limits { display: grid; gap: 22px; }
+.limit .row { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.limit .row b { font-variant-numeric: tabular-nums; font-weight: 600; }
+.bar { height: 10px; border-radius: 5px; background: var(--bed); margin-top: 8px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--graphite); border-radius: 5px; }
+.limits p { font-size: 15px; color: var(--muted); }
+
+.features { padding-top: 88px; padding-bottom: 24px; }
+.feature { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: center; padding: 40px 0; }
+.feature.flip > figure { order: 2; }
+.feature figure { margin: 0; }
+.feature h3 { font-size: clamp(26px, 3vw, 34px); font-weight: 800; font-stretch: 112%; margin-bottom: 14px; }
+.feature p { color: var(--muted); max-width: 46ch; }
+.feature p + p { margin-top: 12px; }
+.parts { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: 14px; color: var(--muted); }
+.parts i { width: 14px; height: 14px; border-radius: 3px; flex: none; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); margin-top: 40px; }
+.facts div { padding: 26px 24px 26px 0; }
+.facts div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+.facts b { display: block; font: 800 38px/1 var(--display); font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.facts span { display: block; margin-top: 8px; font-size: 15px; color: var(--muted); }
+
+.build { padding: 72px 0 88px; }
+.steps { list-style: none; padding: 0; margin: 36px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 3px solid var(--ink); padding-top: 18px; }
+.steps li::before { content: counter(s); display: block; font: 900 44px/1 var(--display); font-stretch: 125%; margin-bottom: 12px; }
+.steps p { color: var(--muted); margin-top: 8px; font-size: 16px; }
+.steps a { font-weight: 600; }
+
+footer { border-top: 1px solid var(--rule); padding: 28px 0 40px; font-size: 15px; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .top { padding: 16px; }
+  .wrap { padding: 0 16px; }
+  .hero, .drawing-grid, .feature { grid-template-columns: 1fr; }
+  .hero figure { margin: 0 -16px; }
+  .feature.flip > figure { order: 0; }
+  .steps, .facts { grid-template-columns: 1fr; }
+  .facts div, .facts div + div { padding: 22px 0; border-left: 0; }
+  .facts div + div { border-top: 1px solid var(--rule); }
+  .dim text { font-size: 44px; }
+  .top nav { gap: 16px; }
+  .brand { white-space: nowrap; font-size: 18px; }
+}
+@media (max-width: 480px) { .top nav .opt { display: none; } }
+@media (max-width: 560px) { .elev svg { display: none; } }   /* labels would shrink below 12px; the bars beside it list the same numbers */
+@media (prefers-reduced-motion: no-preference) {
+  .hero figure img { animation: roll 900ms cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes roll { from { opacity: 0; transform: translateX(40px); } }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./"><img src="media/logo.svg" alt="" width="38" height="38">Autonav R1</a>
+  <nav aria-label="Main">
+    <a href="out/robot_viewer.html">3D viewer</a>
+    <a class="opt" href="#build">Build one</a>
+    <a href="https://github.com/theretroexe/autonav-robot">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <h1>Autonav R1<span>Autonomous Navigation Challenge robot</span></h1>
+      <p class="lede">A car-steered robot that prints on one Bambu printer and goes together without a single screw. Lidar low in the nose, a printed differential in the back, a Raspberry Pi in the middle.</p>
+      <p class="credit">Designed by <b>theretroexe</b></p>
+      <div class="ctas">
+        <a class="btn primary" href="out/robot_viewer.html">Open the 3D viewer</a>
+        <a class="btn" href="https://github.com/theretroexe/autonav-robot/archive/refs/heads/main.zip">Download the print files</a>
+      </div>
+    </div>
+    <figure><img src="media/hero.webp" width="1800" height="1100" fetchpriority="high" alt="Render of Autonav R1 from the front right: graphite decks, blue printed brackets, white spoked wheels, the round lidar at the front and the camera on top."></figure>
+  </section>
+
+  <section class="drawing" aria-labelledby="fit">
+    <div class="wrap">
+      <h2 id="fit">Built to fit the box</h2>
+      <p class="lede" style="margin-top:14px">The rules allow a 300 mm cube and 1.5 kg. Every number here comes from the CAD model, which checks them on each build.</p>
+      <div class="drawing-grid">
+        <div class="elev">
+          <img src="media/side.webp" width="1600" height="1000" loading="lazy" alt="Side elevation of the robot with dimension lines: 295.5 mm long, 174.3 mm tall, 150 mm wheelbase, lidar scan plane 41.8 mm above the floor.">
+          <svg viewBox="0 0 1600 1000" aria-hidden="true" class="dim">
+            <!-- orthographic render: x = 800 + (y_mm - 113.75) * 4.444, y = 500 - (z_mm - 95) * 4.444 (make_renders.py SIDE) -->
+            <line class="ext" x1="143" y1="922" x2="143" y2="84"/><line class="ext" x1="1457" y1="922" x2="1457" y2="84"/>
+            <path d="M143 96H1457M143 84v24M1457 84v24"/><text x="800" y="72" text-anchor="middle">295.5</text>
+            <line class="ext" x1="68" y1="148" x2="700" y2="148"/><line class="ext" x1="68" y1="922" x2="143" y2="922"/>
+            <path d="M80 922V148M68 922h24M68 148h24"/><text x="56" y="535" text-anchor="middle" transform="rotate(-90 56 535)">174.3</text>
+            <path d="M294 966H961M294 954v24M961 954v24"/><text x="628" y="1008" text-anchor="middle">wheelbase 150</text>
+            <line class="scan" x1="1190" y1="736" x2="1600" y2="736"/><text class="o" x="1600" y="716" text-anchor="end">scan 41.8</text>
+          </svg>
+        </div>
+        <div class="limits">
+          <div class="limit"><div class="row"><span>Length</span><b>295.5 / 300 mm</b></div><div class="bar"><i style="width:98.5%"></i></div></div>
+          <div class="limit"><div class="row"><span>Width at full steering lock</span><b>193.6 / 300 mm</b></div><div class="bar"><i style="width:64.5%"></i></div></div>
+          <div class="limit"><div class="row"><span>Height</span><b>174.3 / 300 mm</b></div><div class="bar"><i style="width:58.1%"></i></div></div>
+          <div class="limit"><div class="row"><span>Mass with electronics</span><b>1210 / 1500 g</b></div><div class="bar"><i style="width:80.7%"></i></div></div>
+          <p>The lidar sits as far forward as the cube allows, with 4.5 mm to spare, so the front wheels block as little of its view as possible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap features" aria-labelledby="inside">
+    <h2 id="inside">What's inside</h2>
+    <article class="feature">
+      <figure><img src="media/diff.webp" width="1600" height="1000" loading="lazy" alt="The differential pulled apart: cover, side gear, the three spider gears on their cross, the second side gear, and the crown-gear half of the case."></figure>
+      <div>
+        <div class="parts"><i style="background:var(--swatch-gear)"></i>Gears, printed in PETG at 0.12 mm layers</div>
+        <h3>A differential you print</h3>
+        <p>One JGA25-370 encoder motor drives both rear wheels through a printed crown gear and a bevel differential, so the inside wheel can slow down in a turn. The crown teeth are generated by rolling the pinion through the blank, and every tooth is sized for at least twice the torque the tyres can grip.</p>
+        <p>Each build also slides every gear into place in software, to prove the diff can actually be put together.</p>
+      </div>
+    </article>
+    <article class="feature flip">
+      <figure><img src="media/exploded.webp" width="1600" height="1200" loading="lazy" alt="Exploded view showing the chassis, the mid deck with the Pi and camera, and the half-length top deck separated vertically."></figure>
+      <div>
+        <div class="parts"><i style="background:var(--swatch-pin)"></i>Snap pins and pegs, printed in PETG</div>
+        <h3>Three decks, zero screws</h3>
+        <p>Twenty printed snap pins hold the brackets to the plate, the standoffs snap in on pegs, and the servos clip into printed hooks. The electronics go on with tape and hot glue. There's nothing to buy from a hardware store.</p>
+        <p>The chassis carries the drivetrain, lidar, battery and line sensors. The mid deck holds the Pi, ESP32, motor driver and camera. The top deck is spare room.</p>
+      </div>
+    </article>
+    <div class="facts">
+      <div><b>31° / 21.5°</b><span>Inner and outer wheel lock, within 0.31° of true Ackermann across the whole range</span></div>
+      <div><b>452 mm</b><span>Tightest turning radius, steered by one MG996R servo</span></div>
+      <div><b>41.8 mm</b><span>Lidar scan height, low enough to see 10 cm walls and obstacles</span></div>
+    </div>
+  </section>
+
+  <section class="build" id="build" aria-labelledby="buildh">
+    <div class="wrap">
+      <h2 id="buildh">Build one</h2>
+      <ol class="steps">
+        <li><h3>Print the fit coupon</h3><p>It tests the pin clearance that every joint uses. If the pins are too tight or too loose, change <code>FIT</code> in <code>robot.py</code> and rebuild.</p></li>
+        <li><h3>Print the eight plates</h3><p>Open <a href="out/autonav_plates.3mf">autonav_plates.3mf</a> in Bambu Studio, or use the <a href="https://github.com/theretroexe/autonav-robot/tree/main/out/stl">STL files</a>. Plate notes are in <a href="https://github.com/theretroexe/autonav-robot/blob/main/PRINT_PLATES.md">PRINT_PLATES.md</a>.</p></li>
+        <li><h3>Follow the 14 steps</h3><p>The <a href="out/robot_viewer.html">3D viewer</a> builds the robot one step at a time, with close-ups of the differential. Dimensions are in <a href="https://github.com/theretroexe/autonav-robot/blob/main/out/handoff/autonav_robot.md">autonav_robot.md</a>.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Autonav R1, designed by theretroexe, 2026.</span>
+    <a href="https://github.com/theretroexe/autonav-robot">Source on GitHub</a>
+  </div>
+</footer>
+</body>
+</html>
